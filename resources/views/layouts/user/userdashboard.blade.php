@@ -78,28 +78,23 @@
                             </div>
                         </div>
                     </li>
-                    <li class="tm-nav-item"><a href="contact.html" class="tm-nav-link">
+                    <li class="tm-nav-item"><a href="" class="tm-nav-link">
                             <i class="far fa-comments"></i>
                             Contact Us
                         </a></li>
                 </ul>
             </nav>
             <div class="tm-mb-65">
-                <a rel="nofollow" href="https://fb.com/templatemo" class="tm-social-link">
+                <a rel="nofollow" href="https://www.facebook.com/naim.istiak.75/" class="tm-social-link">
                     <i class="fab fa-facebook tm-social-icon"></i>
                 </a>
-                <a href="https://twitter.com" class="tm-social-link">
-                    <i class="fab fa-twitter tm-social-icon"></i>
-                </a>
-                <a href="https://instagram.com" class="tm-social-link">
-                    <i class="fab fa-instagram tm-social-icon"></i>
-                </a>
-                <a href="https://linkedin.com" class="tm-social-link">
+
+                <a href="https://www.linkedin.com/in/naim-istiak-2370bb214/" class="tm-social-link">
                     <i class="fab fa-linkedin tm-social-icon"></i>
                 </a>
             </div>
             <p class="tm-mb-80 pr-5 text-white">
-                Xtra Blog is a multi-purpose HTML template from TemplateMo website. Left side is a sticky menu bar. Right side content will scroll up and down.
+
             </p>
         </div>
     </header>
@@ -108,8 +103,8 @@
             <!-- Search form -->
             <div class="row tm-row">
                 <div class="col-12">
-                    <form class="form-inline tm-mb-80 tm-search-form">
-                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+                    <form class="form-inline tm-mb-80 tm-search-form" action="{{ route('search') }}" method="GET">
+                        <input class="form-control tm-search-input" name="search" type="text" placeholder="Search..." aria-label="Search" required>
                         <button class="tm-search-button" type="submit">
                             <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
                         </button>
@@ -117,11 +112,12 @@
                 </div>
             </div>
             <div class="row tm-row">
+                @if($posts->count()>0)
                 @foreach($posts as $post)
                 <article class="col-12 col-md-6 tm-post">
 
                     <hr class="tm-hr-primary">
-                    <a href="" class="effect-lily tm-post-link tm-pt-60">
+                    <a href="{{route('post.single',['id'=>$post->id])}}" class="effect-lily tm-post-link tm-pt-60">
                         <div class="tm-post-link-inner">
                             <img src="{{asset('storage/post')}}/{{$post->image}}" alt="Image" class="img-fluid">
                         </div>
@@ -140,7 +136,14 @@
 
                 </article>
                 @endforeach
-
+                @else
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>No Item</strong> match with your search.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
 
             </div>
 
@@ -151,10 +154,10 @@
             <footer class="row tm-row">
                 <hr class="col-12">
                 <div class="col-md-6 col-12 tm-color-gray">
-                    Design: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">TemplateMo</a>
+                    Developed By: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">Naim Istiak Masum</a>
                 </div>
                 <div class="col-md-6 col-12 tm-color-gray tm-copyright">
-                    Copyright 2020 Xtra Blog Company Co. Ltd.
+                    Copyright 2021 m45um19
                 </div>
             </footer>
 
