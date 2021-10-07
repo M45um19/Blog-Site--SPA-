@@ -22,6 +22,7 @@ Route::get('/', [homeController::class, 'index']);
 Route::get('/category/{id}', [homeController::class, 'categorywise'])->name('post.category');
 Route::get('/search', [homeController::class, 'search'])->name('search');
 Route::get('/singlepost/{id}', [singlePostController::class, 'index'])->name('post.single');
+Route::post('/singlepost/comment', [singlePostController::class, 'comment'])->name('comment');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');

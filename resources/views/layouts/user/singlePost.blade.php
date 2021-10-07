@@ -34,15 +34,12 @@ https://templatemo.com/tm-553-xtra-blog
                             <i class="fas fa-home"></i>
                             Blog Home
                         </a></li>
-                    <li class="tm-nav-item active"><a href="post.html" class="tm-nav-link">
+                    <li class="tm-nav-item active"><a href="" class="tm-nav-link">
                             <i class="fas fa-pen"></i>
                             Single Post
                         </a></li>
-                    <li class="tm-nav-item"><a href="about.html" class="tm-nav-link">
-                            <i class="fas fa-users"></i>
-                            About Xtra
-                        </a></li>
-                    <li class="tm-nav-item"><a href="contact.html" class="tm-nav-link">
+
+                    <li class="tm-nav-item"><a href="" class="tm-nav-link">
                             <i class="far fa-comments"></i>
                             Contact Us
                         </a></li>
@@ -72,8 +69,8 @@ https://templatemo.com/tm-553-xtra-blog
             <!-- Search form -->
             <div class="row tm-row">
                 <div class="col-12">
-                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">
-                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+                    <form action="{{ route('search') }}" method="GET" class="form-inline tm-mb-80 tm-search-form">
+                        <input class="form-control tm-search-input" name="search" type="text" placeholder="Search..." aria-label="Search">
                         <button class="tm-search-button" type="submit">
                             <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
                         </button>
@@ -81,6 +78,9 @@ https://templatemo.com/tm-553-xtra-blog
                 </div>
             </div>
             @foreach($posts as $post)
+            @php
+            $post_id = $post->id;
+            @endphp
             <div class="row tm-row">
                 <div class="col-12">
                     <hr class="tm-hr-primary tm-mb-55">
@@ -105,40 +105,40 @@ https://templatemo.com/tm-553-xtra-blog
                         @endforeach
                         <!-- Comments -->
                         <div>
+
+                            @if($comments->count()>0)
                             <h2 class="tm-color-primary tm-post-title">Comments</h2>
+                            @foreach($comments as $comment)
                             <hr class="tm-hr-primary tm-mb-45">
                             <div class="tm-comment tm-mb-45">
                                 <figure class="tm-comment-figure">
-                                    <img src="{{asset('assets/assets2/img/comment-1.jpg')}}" alt="Image" class="mb-2 rounded-circle img-thumbnail">
-                                    <figcaption class="tm-color-primary text-center">Mark Sonny</figcaption>
+                                    <img src="{{asset('assets/assets2/img/user.png')}}" alt="Image" class="mb-2 rounded-circle img-thumbnail" height="100px" width="100px">
+                                    <figcaption class="tm-color-primary text-center">{{$comment->user_name}}</figcaption>
                                 </figure>
                                 <div>
                                     <p>
-                                        Praesent aliquam ex vel lectus ornare tritique. Nunc et eros
-                                        quis enim feugiat tincidunt et vitae dui. Nullam consectetur
-                                        justo ac ex laoreet rhoncus. Nunc id leo pretium, faucibus
-                                        sapien vel, euismod turpis.
+                                        {{$comment->description}}
                                     </p>
                                     <div class="d-flex justify-content-between">
-                                        <a href="#" class="tm-color-primary">REPLY</a>
-                                        <span class="tm-color-primary">June 14, 2020</span>
+
+                                        <span class="tm-color-primary">{{$comment->created_at}}</span>
                                     </div>
                                 </div>
-                            </div>
 
-                            <form action="" class="mb-5 tm-comment-form">
-                                <h2 class="tm-color-primary tm-post-title mb-4">Your comment</h2>
+                            </div>
+                            @endforeach
+                            @else
+                            <h2 class="tm-color-primary tm-post-title">No Comments for this post</h2>
+                            @endif
+                            <form action="{{ route('comment') }}" method="POST" class="mb-5 tm-comment-form">
+                                @csrf
+                                <h2 class="tm-color-primary tm-post-title mb-4">Your comment:</h2>
+                                <input type="text" value="{{$post_id}}" name="post_id" hidden>
                                 <div class="mb-4">
-                                    <input class="form-control" name="name" type="text">
-                                </div>
-                                <div class="mb-4">
-                                    <input class="form-control" name="email" type="text">
-                                </div>
-                                <div class="mb-4">
-                                    <textarea class="form-control" name="message" rows="6"></textarea>
+                                    <textarea class="form-control" name="description" rows="6" required></textarea>
                                 </div>
                                 <div class="text-right">
-                                    <button class="tm-btn tm-btn-primary tm-btn-small">Submit</button>
+                                    <button type="submit" class="tm-btn tm-btn-primary tm-btn-small">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -168,11 +168,12 @@ https://templatemo.com/tm-553-xtra-blog
                 </aside>
             </div>
             <footer class="row tm-row">
+                <hr class="col-12">
                 <div class="col-md-6 col-12 tm-color-gray">
-                    Design: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">TemplateMo</a>
+                    Developed By: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">Naim Istiak Masum</a>
                 </div>
                 <div class="col-md-6 col-12 tm-color-gray tm-copyright">
-                    Copyright 2020 Xtra Blog Company Co. Ltd.
+                    Copyright 2021 m45um19
                 </div>
             </footer>
         </main>

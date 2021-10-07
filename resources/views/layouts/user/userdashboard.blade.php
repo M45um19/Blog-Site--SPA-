@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>Laravel</title>
+    <title>Xtra Blog</title>
     <link rel="stylesheet" href="{{asset('assets/assets2/fontawesome/css/all.min.css')}}"> <!-- https://fontawesome.com/ -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
     <link href="{{asset('assets/assets2/css/bootstrap.min.css')}}" rel="stylesheet">
